@@ -1,2 +1,2 @@
-# PIPOUMONEY-Economy-Plugin
+# PIPOUMONEY Economy Plugin
 A economy system plugin
