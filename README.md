@@ -223,3 +223,204 @@ health:
   #  2 = 15 minutes
   tps-sample: 0
 ```
+## messages.yml
+```YAML
+# =========================================
+# PipouMoney - Messages
+# All messages are configurable.
+#
+# Global placeholders injected automatically:
+#  {main} {info} {warn}
+#  {symbol} {singular} {plural}
+#
+# Common placeholders:
+#  {label} {perm} {player} {amount}
+#  {sent} {received} {tax}
+#  {rank} {count}
+#  {page} {pages}
+#  {min} {sort}
+#  {state} {tps}
+#  {when} {duration}
+#  {version} {provider} {plugin}
+#  {days} {deleted}
+# =========================================
+
+prefix:
+  main: "§6§lPipouMoney §e» §r"
+  info: "§6§lPipouMoney §f» §r"
+  warn: "§6§lPipouMoney §c» §r"
+
+generic:
+  unknown: "{warn}§cUnknown subcommand. Type §e/{label} help§c."
+  no_permission: "{warn}§cYou do not have permission."
+  no_permission_cmd: "{warn}§cYou do not have permission (§7{perm}§c)."
+  player_not_found: "{warn}§cPlayer not found."
+  db_error: "{warn}§cA database error occurred. Please try again later."
+  audit_disabled: "{warn}§cAudit is disabled on this server."
+  invalid_page: "{warn}§cInvalid page number."
+  only_players: "{warn}§cThis command can only be used in-game."
+
+help:
+  header: "{main}§6=== PipouMoney Help ==="
+
+  player_header: "§ePlayer commands:"
+  player_bal_self: "§e/bal §7- View your balance."
+  player_bal_other: "§e/bal <player> §7- View another player's balance."
+  player_pay: "§e/pay <player> <amount> §7- Send money to a player."
+  player_baltop: "§e/baltop [n] §7- View the richest players."
+  player_settings: "§e/{label} settings §7- Manage your money settings."
+  player_history_me: "§e/{label} history me [page] §7- View your transaction history."
+  player_version: "§e/{label} version §7- Show plugin version and Vault status."
+  player_help_tip: "§7Type §e/{label} help§7 to view this message again."
+
+  admin_header: "§cAdmin commands:"
+  admin_give: "§c/{label} admin give <player> <amount>"
+  admin_take: "§c/{label} admin take <player> <amount>"
+  admin_set: "§c/{label} admin set <player> <amount>"
+  admin_profile: "§c/{label} admin profile <player>"
+  admin_history: "§c/{label} admin history [player|*] [page] §7(filters: §f--days=30 --min=100 --source=PAY --type=TRANSFER --flagged=true§7)"
+  admin_balances: "§c/{label} admin balances [page]"
+  admin_top: "§c/{label} admin top [n]"
+  admin_reload: "§c/{label} admin reload"
+  admin_save: "§c/{label} admin save"
+  admin_health: "§c/{label} admin health"
+  admin_stats: "§c/{label} admin stats"
+  admin_debug: "§c/{label} admin debug"
+  admin_purge: "§c/{label} admin purge <days>"
+  admin_tx: "§c/{label} admin tx <txId>"
+  admin_flag: "§c/{label} admin flag <txId> <reason>"
+  admin_unflag: "§c/{label} admin unflag <txId>"
+
+balance:
+  show: "{info}§aBalance: §e{amount}"
+  other: "{info}§aBalance of §e{player}§a: §e{amount}"
+
+economy:
+  invalid_amount: "{warn}§cInvalid amount."
+  not_enough: "{warn}§cYou do not have enough money."
+
+pay:
+  disabled: "{warn}§cPayments are disabled."
+  self: "{warn}§cYou cannot pay yourself."
+  locked_target: "{warn}§cThis account is locked."
+  min: "{warn}§cMinimum amount is §e{min}§c."
+  cooldown: "{warn}§cYou must wait §e{seconds}§c seconds before paying again."
+
+  confirm_required: "{info}§eThis payment requires confirmation. Type §6/{label} pay confirm§e to proceed."
+  confirm_missing: "{warn}§cNo payment to confirm."
+  confirm_expired: "{warn}§cConfirmation expired. Please redo the payment."
+  confirm_done: "{info}§aPayment confirmed."
+
+  request_sent: "{info}§aRequest sent to §e{player}§a for §e{amount}§a."
+  request_received: "{info}§e{player}§7 requested §e{amount}§7 from you. Use §e/{label} pay accept {player}§7."
+  request_missing: "{warn}§cNo pending request from this player."
+  request_expired: "{warn}§cThis request has expired."
+  request_denied_locked: "{warn}§cYour account is locked; you cannot accept requests."
+  request_accepted: "{info}§aPayment request accepted."
+
+  taxed_to_treasury: "{info}§7Tax sent to treasury: §e{tax}"
+  taxed_to_sink: "{info}§7Tax removed: §e{tax}"
+
+  sent: "{info}§aYou sent §e{sent}§a to §e{player}§a (tax: §e{tax}§a)."
+  received: "{info}§aYou received §e{received}§a from §e{player}§a."
+
+settings:
+  header: "{main}§6=== Your Money Settings ==="
+  line_notify: "§eNotifications: §f{state} §7(type §e/{label} settings notify§7)"
+  line_lock: "§eAccount lock: §f{state} §7(type §e/{label} settings lock§7)"
+  notify_enabled: "{info}§aNotifications enabled."
+  notify_disabled: "{warn}§cNotifications disabled."
+  lock_enabled: "{info}§aAccount lock enabled."
+  lock_disabled: "{warn}§cAccount lock disabled."
+
+top:
+  header: "{main}§6=== Top Balances (showing {count}) === §7(onlyOnline={onlyOnline}, showUuid={showUuid})"
+  line: "§e#{rank} §f{player} §7- §e{amount}"
+  me: "{info}§aYour rank: §e#{rank} §7(balance: §e{amount}§7)"
+
+balances:
+  header: "{main}§6=== Balances (page {page}/{pages}) === §7(min={min}, sort={sort})"
+  line: "§f{player} §7- §e{amount}"
+  footer: "§7Use §e/{label} admin balances <page>§7 to navigate."
+
+history:
+  empty: "{info}§7No transactions found."
+  self_header: "{main}§6=== Your History (page {page}/{pages}) ==="
+  header: "{main}§6=== History (page {page}/{pages}) ==="
+  line: "§7[{date}] §f{source}§7/§f{type} §8| §7actor=§f{actor} §8-> §7target=§f{target} §8| §e{amount}{flag}"
+  footer: "§7Tip: §e/{label} admin history * 1 --days=30 --min=100 --source=PAY --type=TRANSFER --flagged=true"
+
+profile:
+  header: "{main}§6=== Profile: §e{player}§6 ==="
+  balance: "§7Balance: §e{amount}"
+  activity: "§7Last activity: §e{date}"
+  tx: "§7Transactions: §e{count}"
+
+admin:
+  reloaded: "{info}§aConfiguration reloaded."
+  autosave_disabled: "{warn}§eNote: autosave is disabled."
+  saved: "{info}§aSaved successfully."
+  done: "{info}§aDone."
+  invalid_player: "{warn}§cInvalid player."
+  invalid_tx: "{warn}§cTransaction not found (id=§e{txId}§c)."
+
+health:
+  header: "{main}§6=== Health ==="
+  db: "§7Database: {state}"
+  vault: "§7Vault: {state}"
+  tps: "§7TPS: §e{tps}"
+
+stats:
+  header: "{main}§6=== Stats ==="
+  dirty: "§7Dirty accounts: §e{dirty}"
+  flush_queued: "§7Flush queued: §e{queued}"
+  last_flush: "§7Last flush: §e{when} §7(duration §e{duration}ms§7)"
+  autosave: "§7Autosave: §e{enabled}§7 (every §e{minutes}§7 minutes)"
+  reset: "{info}§aStats reset."
+  flush_done: "{info}§aFlush requested (duration: {duration}ms)."
+
+debug:
+  header: "{main}§6=== Debug ==="
+  vault: "§7Vault present: {state}"
+  no_provider: "{warn}§cNo Vault Economy provider is registered."
+  provider: "§7Economy provider: §e{name}"
+  plugin: "§7Provider plugin: §e{plugin}"
+  balance: "§7Vault balance: §e{amount}"
+
+audit:
+  purge_done: "{info}§aAudit purge done: deleted §e{deleted}§a rows (older than §e{days}§a days)."
+
+flag:
+  tagged: " §c§l[FLAGGED]§r"
+  set_ok: "{info}§aTransaction §e#{txId}§a flagged: §f{reason}§a."
+  unset_ok: "{info}§aTransaction §e#{txId}§a unflagged."
+  already_flagged: "{warn}§cThis transaction is already flagged."
+  not_flagged: "{warn}§cThis transaction is not flagged."
+  reason_required: "{warn}§cYou must provide a reason."
+  show: " §8(§cflagged by §f{by}§8: §f{reason}§8)"
+
+anti_abuse:
+  alert_admins: "{warn}§c[AntiAbuse] Suspicious activity: §f{player}§c | §7reason=§f{reason}§c | §7amount=§e{amount}§c"
+  blocked_sender: "{warn}§cTransaction blocked by anti-abuse protection (§7{reason}§c)."
+  flagged_sender: "{warn}§eTransaction was flagged for review (§7{reason}§e)."
+
+version:
+  line: "{info}§7PipouMoney §ev{version} §7- Vault provider: §e{provider} §7(from §e{plugin}§7)"
+
+limits:
+  header: "{main}§6=== Payment Limits ==="
+  line: "§7Min: §e{min} §7| Tax: §e{tax}% §7| Cooldown: §e{cd}s §7| Confirm above: §e{confirm} §7| Tax mode: §e{mode}"
+
+usage:
+  pay: "{warn}§cUsage: §e/pay <player> <amount>"
+  profile: "{warn}§cUsage: §e/{label} admin profile <player>"
+  purge: "{warn}§cUsage: §e/{label} admin purge <days>"
+  give: "{warn}§cUsage: §e/{label} admin give <player> <amount>"
+  take: "{warn}§cUsage: §e/{label} admin take <player> <amount>"
+  set: "{warn}§cUsage: §e/{label} admin set <player> <amount>"
+  settings: "{warn}§cUsage: §e/{label} settings [notify|lock]"
+  history: "{warn}§cUsage: §e/{label} history me [page] §7or §e/{label} admin history [player|*] [page]"
+  tx: "{warn}§cUsage: §e/{label} admin tx <txId>"
+  flag: "{warn}§cUsage: §e/{label} admin flag <txId> <reason>"
+  unflag: "{warn}§cUsage: §e/{label} admin unflag <txId>"
+```
