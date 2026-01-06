@@ -1,5 +1,43 @@
 # PIPOUMONEY Economy Plugin
 A economy system plugin
+
+## Player Commands
+
+| Command | Description | Permission |
+|--------|------------|------------|
+| `/money` | Show your current balance | `pipoumoney.use` |
+| `/bal` | Show your balance | `pipoumoney.balance` |
+| `/bal <player>` | Show another player’s balance | `pipoumoney.balance.other` |
+| `/pay <player> <amount>` | Send money to a player | `pipoumoney.pay` |
+| `/pay confirm` | Confirm a pending payment | `pipoumoney.pay` |
+| `/baltop [n]` | Show richest players | `pipoumoney.top` |
+| `/money top [n]` | Same as /baltop | `pipoumoney.top` |
+| `/money history me [page]` | View your transaction history | `pipoumoney.use` |
+| `/money settings` | View money settings | `pipoumoney.settings` |
+| `/money settings notify` | Toggle notifications | `pipoumoney.settings` |
+| `/money settings lock` | Lock / unlock your account | `pipoumoney.settings` |
+| `/money version` | Show plugin & Vault info | `pipoumoney.use` |
+
+## Admin Commands
+
+| Command | Description | Permission |
+|--------|------------|------------|
+| `/money admin` | Show admin help | `pipoumoney.admin` |
+| `/money admin give <player> <amount>` | Give money | `pipoumoney.admin.give` |
+| `/money admin take <player> <amount>` | Take money | `pipoumoney.admin.take` |
+| `/money admin set <player> <amount>` | Set exact balance | `pipoumoney.admin.set` |
+| `/money admin balances [page]` | List all balances | `pipoumoney.admin.balances` |
+| `/money admin top [n]` | Global top balances | `pipoumoney.admin.top` |
+| `/money admin history [player\|*] [page]` | Global audit history with filters | `pipoumoney.admin.history` |
+| `/money admin tx <id>` | View transaction details | `pipoumoney.admin.audit.view` |
+| `/money admin flag <id> <reason>` | Flag a transaction | `pipoumoney.admin.audit.flag` |
+| `/money admin unflag <id>` | Remove transaction flag | `pipoumoney.admin.audit.unflag` |
+| `/money admin purge <days>` | Purge old audit logs | `pipoumoney.admin.purge` |
+| `/money admin reload` | Reload configuration | `pipoumoney.admin.reload` |
+| `/money admin save` | Force save accounts | `pipoumoney.admin.save` |
+| `/money admin health` | Database & TPS health | `pipoumoney.admin.health` |
+| `/money admin stats` | Internal statistics | `pipoumoney.admin.stats` |
+
 ## config.yml
 ```yaml
 # ============================================================
