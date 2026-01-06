@@ -1,6 +1,20 @@
 # PIPOUMONEY Economy Plugin
 A economy system plugin
 
+## PipouMoney
+
+PipouMoney is a simple and lightweight economy plugin for Minecraft, focused on pure economy only.
+It provides balances, payments, admin management, audit logs and anti-abuse tools, without banks, coins, items, GUIs or unnecessary gameplay features.
+
+Why PipouMoney?
+This plugin exists to offer a modern economy solution, frequently updated, with new features strictly related to economy management.
+Its goal is to handle the entire economic backbone of your server, so you can focus on the rest of your gameplay and content.
+
+PipouMoney is fully configurable, Vault-compatible and PlaceholderAPI-compatible.  
+It is designed to be fast, clean and reliable.
+
+No bloat. No gimmicks. Just economy.
+
 ## Player Commands
 
 | Command | Description | Permission |
