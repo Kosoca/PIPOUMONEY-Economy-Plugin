@@ -1,6 +1,3 @@
-# PIPOUMONEY Economy Plugin
-A economy system plugin
-
 ## PipouMoney
 
 PipouMoney is a simple and lightweight economy plugin for Minecraft, focused on pure economy only.
